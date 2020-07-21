@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "791895293483",
+    "firebase_url": "https://foodtogofinal.firebaseio.com",
+    "project_id": "foodtogofinal",
+    "storage_bucket": "foodtogofinal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791895293483:android:1d573aeac9fb147e5cf46e",
+        "android_client_info": {
+          "package_name": "com.xandrew.loginpage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "791895293483-pj11m39otegi734mb5595osv9slglsib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xandrew.loginpage",
+            "certificate_hash": "f2cdb60cb0ba7e415ac1efd50112da505db8fbdf"
+          }
+        },
+        {
+          "client_id": "791895293483-ucqtr2jv4h968rpphfnjsv1ti8omltcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdyllQEMg3Ebx0lo_vwFSlC52_M7bpaQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "791895293483-ucqtr2jv4h968rpphfnjsv1ti8omltcd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
