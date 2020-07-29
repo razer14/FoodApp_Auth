@@ -29,7 +29,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 10.0,
                 ),
                 RoundedButton(
-                  colour: Colors.lightGreen,
+                  colour: Colors.green,
                   title: 'Sign Up',
                   onPressed: () {
 //                    print (email);
@@ -91,7 +91,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.all(5.0),
                   child: Text( 'By Signing up,you are agreeing to our Terms of Use and Privacy Policy ',textAlign: TextAlign.center,
                     style: TextStyle (
-                      color: Colors.white
+                      color: Colors.black
                     ),
                   ),
                 ),
@@ -108,7 +108,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           padding: const EdgeInsets.all(20.0),
                           child: Text(
                             '  Already have an account?  ',
-                            style: TextStyle(fontSize: 15.0, color: Colors.white),
+                            style: TextStyle(fontSize: 15.0, color: Colors.black),
                           ),
                         ),
                         Text ('Log In', style: TextStyle(fontSize: 18.0, color: Colors.lightGreenAccent),),

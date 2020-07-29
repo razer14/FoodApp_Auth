@@ -25,7 +25,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       vsync: this,
     );
     animation1 =
-        ColorTween(begin: Colors.grey, end: Colors.green).animate(controller);
+        ColorTween(begin: Colors.grey, end: Colors.white).animate(controller);
 
     controller.forward();
     controller.addListener(() {
@@ -59,7 +59,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 ),
               ),
               RoundedButton (
-                colour: Colors.lightGreen,
+                colour: Colors.green,
                    title: 'Order Now',
                     onPressed: () {
                   Navigator.pushNamed(context, SignInPage.id);

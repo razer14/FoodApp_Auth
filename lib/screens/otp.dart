@@ -21,7 +21,7 @@ class _OTPPageState extends State<OTPPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.white,
       body: Form(
           key: formKey,
           child: Column(
@@ -36,7 +36,7 @@ class _OTPPageState extends State<OTPPage> {
                         Image.asset(
                           'images/flogo.png',
                           width: 300.0,
-                          height: 80.0,
+                          height: 70.0,
                         ),
                       ],
                     ),
@@ -52,13 +52,12 @@ class _OTPPageState extends State<OTPPage> {
               ),
               SizedBox (height: 25,),
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.only(left: 20, right: 20),
                 child: TextField(
+                  style: TextStyle (color: Colors.black) ,
                   keyboardType: TextInputType.phone,
-                  onChanged: (val) {
-                    setState(() {
-                      this.phoneNo = val;
-                    });
+                  onChanged: (value) {
+                    this.phoneNo = value;
                   },
                   decoration: InputDecoration (
                     filled: true,
@@ -72,10 +71,8 @@ class _OTPPageState extends State<OTPPage> {
                   padding: EdgeInsets.all(20),
                   child: TextField(
                     keyboardType: TextInputType.phone,
-                    onChanged: (val) {
-                      setState(() {
-                        this.smsCode = val;
-                      });
+                    onChanged: (value) {
+                      this.smsCode = value;
                     },
                     decoration: InputDecoration (
                       filled: true,
@@ -89,8 +86,8 @@ class _OTPPageState extends State<OTPPage> {
                   padding: EdgeInsets.all(10),
                   child: Center(
                     child: RoundedButton(
-                      colour: Colors.lightGreen,
-                      title: 'Verify',
+                      colour: Colors.green,
+                      title: (codeSent) ? 'Login' : 'Verify',
                       onPressed: (){
 
                         codeSent ? AuthService().signInWithOTP(smsCode, verificationId):verifyPhone(phoneNo);

@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:loginpage/screens/sign_up.dart';
 import '../widgets/roundbutton.dart';
-import 'package:social_media_buttons/social_media_buttons.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loginpage/screens/otp.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 
 class SignInPage extends StatefulWidget {
   static const String id = 'login_screen';
+
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -24,7 +25,7 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -35,21 +36,17 @@ class _SignInPageState extends State<SignInPage> {
                     child: Container(
                       child: Image.asset(
                         'images/flogo.png',
-                        width: 200.0,
-                        height: 50.0,
+                        width: 300.0,
+                        height: 70.0,
                       ),
                     ),
                   ),
                 ),
+                SizedBox (height: 20,),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Center(child: Text ('Log In your Account',style: TextStyle (
-                      fontSize: 18.0, color: Colors.white
-                  ),),),
-                )
-                ,Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: TextField(
+                    keyboardType: TextInputType.emailAddress,
                     onChanged: (value) {
                       email=value;
                     },
@@ -77,24 +74,16 @@ class _SignInPageState extends State<SignInPage> {
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)), labelText: 'Password',labelStyle: TextStyle(
                         color: myFocusNode.hasFocus ? Colors.lightGreen : Colors.black
                     ),),
-
-
                   ),
                 ),
 
                 RoundedButton(
-                  colour: Colors.lightGreen,
+                  colour: Colors.green,
                   title: 'Log In',
                   onPressed: () {
                     _auth.createUserWithEmailAndPassword(email: email.trim(), password: password);
                     Navigator.pop(context);
                   },
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Text( 'By logging in,you are agreeing to our Terms of Use and Privacy Policy ',textAlign: TextAlign.center,style: TextStyle(
-                    color: Colors.white
-                  ),),
                 ),
                 SizedBox(
                   height: 10,
@@ -104,76 +93,35 @@ class _SignInPageState extends State<SignInPage> {
                   child: Text(
                     'or Log in with',
                     style: TextStyle(
-                        color: Colors.white, fontSize: 18.0, fontFamily: 'Russian'),
+                        color: Colors.black, fontSize: 18.0, fontFamily: 'Russian'),
                   ),
                 ),
                 SizedBox(
                   height: 10.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                Column (
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          child: SocialMediaButton.google(
-                            size: 50.0,
-                            color: Colors.white,
-                            onTap: () {
-                              _googleSignUp();
-                            },
-                          ),
-                        ),
-                        Container(child: Center(child: Text('Gmail',style: TextStyle (color: Colors.white),))),
-                      ],
+                   SignInButton(
+                      Buttons.Google,
+                      onPressed: () {
+                        _googleSignUp();
+                        Navigator.pushNamed(context, OTPPage.id);
+                      },
                     ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          child: SocialMediaButton.facebook(
-                            size: 50.0,
-                            color: Colors.white,
-                            onTap: () {
-//                              print('go to faceboook');
-                              signUpWithFacebook();
-
-                            },),
-                        ),
-                        Container(child: Center(child: Text('Facebook',style: TextStyle (color: Colors.white),))),
-                      ],
+                    SizedBox (
+                      height: 10,
                     ),
-
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Container(
-                            child: FlatButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context,OTPPage.id);
-
-//                                print('go to mobile verification');
-                              },
-                              child: Icon(
-                                Icons.phone_android,
-                                size: 50.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Container(
-                              child: Center(child: Text('OTP',style: TextStyle (color: Colors.white),))),
-                        )
-                      ],
-                    )
+                    SignInButton(
+                      Buttons.Facebook,
+                      onPressed: () {
+                        signUpWithFacebook();
+                        Navigator.pushNamed(context, OTPPage.id);
+                      },
+                    ),
                   ],
                 ),
-
                 SizedBox (
-                  height: 150,
+                  height:150,
                 ),
                 FlatButton(
                   onPressed: (){
@@ -186,10 +134,10 @@ class _SignInPageState extends State<SignInPage> {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           '  Don\'t have an account?  ',
-                          style: TextStyle(fontSize: 15.0, color: Colors.white),
+                          style: TextStyle(fontSize: 15.0, color: Colors.black),
                         ),
                       ),
-                      Text ('Sign Up now', style: TextStyle(fontSize: 18.0, color: Colors.lightGreenAccent),),
+                      Text ('Sign Up now', style: TextStyle(fontSize: 18.0, color: Colors.green),),
                     ],
                   ),
                 ),
@@ -233,11 +181,9 @@ Future<void> signUpWithFacebook() async{
   try {
     var facebookLogin = new FacebookLogin();
     var result = await facebookLogin.logIn(['email']);
-
     if(result.status == FacebookLoginStatus.loggedIn) {
       final AuthCredential credential = FacebookAuthProvider.getCredential(
         accessToken: result.accessToken.token,
-
       );
       final FirebaseUser user = (await FirebaseAuth.instance.signInWithCredential(credential)).user;
       print( user.displayName);
